@@ -1,0 +1,209 @@
+#AozoraContents {
+    width: 40em;
+    max-width: 40em;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.jisage {
+    margin-left: var(--jisage);
+}
+
+.burasage {
+    margin-left: var(--burasage);
+    text-indent: var(--burasage-turn);
+}
+
+.jizume {
+    width: var(--jizume);
+}
+
+.chitsuki {
+    text-align: right;
+    margin-right: var(--chitsuki);
+}
+
+.chitsuki-float {
+    text-align: right;
+    margin-right: var(--chitsuki);
+    float: right;
+}
+
+.sesame_dot {
+    -webkit-text-emphasis: filled sesame;
+    text-emphasis: filled sesame;
+}
+
+.white_sesame_dot {
+    -webkit-text-emphasis: open sesame;
+    text-emphasis: open sesame;
+}
+
+.black_circle {
+    -webkit-text-emphasis: filled circle;
+    text-emphasis: filled circle;
+}
+
+.white_circle {
+    -webkit-text-emphasis: open circle;
+    text-emphasis: open circle;
+}
+
+.black_up-pointing_triangle {
+    -webkit-text-emphasis: filled triangle;
+    text-emphasis: filled triangle;
+}
+
+.white_up-pointing_triangle {
+    -webkit-text-emphasis: open triangle;
+    text-emphasis: open triangle;
+}
+
+.bullseye {
+    -webkit-text-emphasis: open double-circle;
+    text-emphasis: open double-circle;
+}
+
+.fisheye {
+    -webkit-text-emphasis: filled double-circle;
+    text-emphasis: filled double-circle;
+}
+
+.saltire {
+    -webkit-text-emphasis: '×';
+    text-emphasis: '×';
+}
+
+.sesame_dot_after {
+    -webkit-text-emphasis: filled sesame;
+    text-emphasis: filled sesame;
+}
+
+.white_sesame_dot_after {
+    -webkit-text-emphasis: open sesame;
+    text-emphasis: open sesame;
+}
+
+.black_circle_after {
+    -webkit-text-emphasis: filled circle;
+    text-emphasis: filled circle;
+}
+
+.white_circle_after {
+    -webkit-text-emphasis: open circle;
+    text-emphasis: open circle;
+}
+
+.black_up-pointing_triangle_after {
+    -webkit-text-emphasis: filled triangle;
+    text-emphasis: filled triangle;
+}
+
+.white_up-pointing_triangle_after {
+    -webkit-text-emphasis: open triangle;
+    text-emphasis: open triangle;
+}
+
+.bullseye_after {
+    -webkit-text-emphasis: open double-circle;
+    text-emphasis: open double-circle;
+}
+
+.fisheye_after {
+    -webkit-text-emphasis: filled double-circle;
+    text-emphasis: filled double-circle;
+}
+
+.saltire_after {
+    -webkit-text-emphasis: '×';
+    text-emphasis: '×';
+}
+
+.underline_solid {
+    text-decoration: underline;
+}
+
+.underline_double {
+    text-decoration: underline;
+    text-decoration-style: double;
+}
+
+.underline_dotted {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+.underline_dashed {
+    text-decoration: underline;
+    text-decoration-style: dashed;
+}
+
+.underline_wave {
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}
+
+.overline_solid {
+    border-top: solid;
+}
+
+.overline_double {
+    border-top: double;
+}
+
+.overline_dotted {
+    border-top: dotted;
+}
+
+.overline_dashed {
+    border-top: dashed;
+}
+
+.overline_wave {
+    padding-top: 3px;
+    background-image: linear-gradient(135deg, transparent 35%, black 50%, transparent 65%), linear-gradient(225deg, transparent 35%, black 50%, transparent 65%);
+    background-size: 10px 5px;
+    background-position: 0px 0%, 5px 0%;
+    background-repeat: repeat-x;
+}
+
+.futoji {
+    font-weight: bold;
+}
+
+.shatai {
+    font-style: italic;
+    font-family: Times New Roman, "ＭＳ Ｐゴシック";
+}
+
+ruby.ruby-under {
+    ruby-position: under;
+}
+
+.keigakomi {
+    border: 1px solid #000;
+}
+
+.dai1 {
+    font-size: large;
+}
+
+.dai2 {
+    font-size:  x-large;
+}
+
+.dai3, .dai4, .dai5 {
+    font-size:  xx-large;
+}
+
+.sho1 {
+    font-size: small;
+}
+
+.sho2 {
+    font-size: x-small;
+}
+
+.sho3, .sho4, .sho5 {
+    font-size: xx-small;
+}
