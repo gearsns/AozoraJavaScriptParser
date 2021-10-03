@@ -130,11 +130,12 @@ const AozoraText2Html = (text, cur_command = "title") => {
 		"大きな文字": { class: "dai", block_tag: "div", tag: "span" },
 		"小さな文字": { class: "sho", block_tag: "div", tag: "span" },
 	}
+	text = text.replace(/(?:\r\n|\r|\n)/g, "\n")
 	// ルビと青空文庫コマンド対象にテキストと青空文庫コマンドを分割
 	let ret = []
 	for (const line of text
 		.replace(/\-{2,}\n【テキスト中に現れる記号について】\n[\s\S]*?\-{2,}\n/, '') // コメント削除
-		.split(/\n/)) {
+		.split(/(?:\r\n|\r|\n)/)) {
 		let ruby_start_index = -1
 		let command_nest_num = 0 // 青空文庫コマンドネスト対応
 		let line_item = []
@@ -173,7 +174,6 @@ const AozoraText2Html = (text, cur_command = "title") => {
 				ruby_start_index = line_item.length
 				line_item.push({ type: "ruby_start", text: value })
 			} else if (value && value.length > 0) {
-				command_num = 0
 				line_item.push({ type: "text", text: value })
 			}
 		}
