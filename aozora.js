@@ -110,10 +110,10 @@ const AozoraText2Html = (text, cur_command = "title") => {
 		"太字": { class: "futoji", tag: "span" },
 		"斜体": { class: "shatai", tag: "span" },
 		"キャプション": { class: "caption", tag: "span" },
-		"改丁": { class: "notes kaicho", tag: "span" },
-		"改ページ": { class: "notes new-page", tag: "span" },
-		"改見開き": { class: "notes new-mihiraki", tag: "span" },
-		"改段": { class: "notes new-block", tag: "span" },
+		"改丁": { class: "notes kaicho", tag: "span", content: true },
+		"改ページ": { class: "notes new-page", tag: "span", content: true },
+		"改見開き": { class: "notes new-mihiraki", tag: "span", content: true },
+		"改段": { class: "notes new-block", tag: "span", content: true },
 		"地付き": { class: "chitsuki", tag: "div" },
 		"ページの左右中央": { class: "chuou", tag: "div" },
 		"左にルビ付き": { class: "ruby-under", tag: "ruby" },
@@ -390,6 +390,8 @@ const AozoraText2Html = (text, cur_command = "title") => {
 						text_arr[text_arr.length - 1] = `<image ${command.text} />`
 					} else if (command.tag.match(/\//)) {
 						text_arr.push(`${command.text}<${command.tag}>`)
+					} else if (command.content === true) {
+						text_arr.push(`<${command.tag} ${command.text}></${command.tag}>`)
 					} else if (command.content) {
 						text_arr.push(`<${command.tag} ${command.text}>${command.content}</${command.tag}>`)
 					} else {
