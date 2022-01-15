@@ -2,10 +2,39 @@
 <html lang="ja">
 <title>青空文庫テキスト変換 </title>
 <style>
-	#AozoraText {
-		width: 100%;
-		height: 20em;
-	}
+    #AozoraText {
+        width: 100%;
+        height: 20em;
+    }
+    
+    #AozoraHTML {
+        width: 100%;
+        height: 1em;
+    }
+    
+    button {
+        border: none;
+        background-color: rgb(38, 126, 167);
+        color: #fff;
+        padding: 0;
+        margin: 0;
+        margin-right: 0.2em;
+    }
+    
+    button a,
+    button span {
+        display: flex;
+        background-color: rgb(38, 126, 167);
+        text-decoration: none;
+        color: #fff;
+        margin: 0;
+        padding: 0.2em;
+    }
+    
+    button a:hover,
+    button span:hover {
+        background-color: rgb(28, 99, 133);
+    }
 </style>
 <h1>青空文庫テキスト変換</h1>
 <textarea id="AozoraText">
@@ -562,25 +591,58 @@ Mors ubi dira fuit vita salusque patent.
 
 </textarea>
 <hr>
-<button id="AozoraTextConvert">HTMLに変換</button><button id="DisplayHtml">HTMLのタグを表示</button>
+<button id="AozoraTextConvert"><span>HTMLに変換</span></button>
 <hr>
-<div id="AozoraContents">
-</div>
+<button id="Preview"><span>プレビュー</span></button><button id="DisplayHTML"><span>HTMLを表示</span></button><button><a id="Download" href="#">ダウンロード</a></button>
+<hr>
+<div id="AozoraPreview"></div>
+<textarea id="AozoraHTML"></textarea>
 <link rel="stylesheet" type="text/css" href="aozora.css"></link>
 <script src='aozora.js'></script>
 <script>
+    const el_text = document.getElementById("AozoraText")
+    const el_preview = document.getElementById("AozoraPreview")
+    const el_html = document.getElementById("AozoraHTML")
+    const el_download = document.getElementById("Download")
+    preview = () => {
+        el_preview.innerHTML = html
+        el_html.style.display = "none"
+        el_preview.style.display = "block"
+    }
+    displayHTML = () => {
+        el_html.style.height = `1em`
+        el_html.value = html
+        el_html.style.display = "block"
+        let h = parseInt(el_html.scrollHeight)
+        el_html.style.height = `${h}px`
+        el_preview.textContent = ""
+        el_preview.style.display = "none"
+    }
     document.getElementById("AozoraTextConvert").addEventListener("click", e => {
-        let text = document.getElementById("AozoraText").value
-        document.getElementById("AozoraContents").innerHTML = AozoraText2Html(text)
+        html = AozoraText2Html(el_text.value)
+        displayHTML()
     })
-    document.getElementById("DisplayHtml").addEventListener("click", e => {
-        const escapeHtmlMap = {"&": "&amp;", ">": "&gt;", "<": "&lt;", "\"": "&quot;", "'": "&#x27;", "`": "&#x60;"}
-        const escapeHtml = str => str.replace(/(?:&|>|<|"|'|`)/g, t => escapeHtmlMap[t])
-        let text = document.getElementById("AozoraText").value
-        document.getElementById("AozoraContents").innerHTML = escapeHtml(AozoraText2Html(text))
+    document.getElementById("Preview").addEventListener("click", e => {
+        preview()
     })
-    let text = document.getElementById("AozoraText").value
-    document.getElementById("AozoraContents").innerHTML = AozoraText2Html(text)
+    document.getElementById("DisplayHTML").addEventListener("click", e => {
+        displayHTML()
+    })
+    el_download.addEventListener("click", e => {
+        const blob = new Blob([html], {
+            type: 'text/plain'
+        })
+        const url = URL.createObjectURL(blob)
+        const m = html.match(/<h1 class="title">(.*?)<\/h1>/)
+        if (m) {
+            el_download.download = `${m[1]}.html`
+        } else {
+            el_download.download = "aozora.html"
+        }
+        el_download.href = url
+    })
+    let html = AozoraText2Html(el_text.value)
+    preview()
 </script>
 
 </html>

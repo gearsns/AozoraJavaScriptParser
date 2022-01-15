@@ -80,7 +80,7 @@ const AozoraText2Html = (text, cur_command = "title") => {
 		"窓大見出し": { class: "mado-o-midashi", tag: "h3" },
 		"窓中見出し": { class: "mado-naka-midashi", tag: "h4" },
 		"窓小見出し": { class: "mado-ko-midashi", tag: "h5" },
-		"縦中横": { class: "tatechuyokoi", tag: "span" },
+		"縦中横": { class: "tatechuyoko", tag: "span" },
 		"傍点": { class: "sesame_dot", tag: "em" },
 		"白ゴマ傍点": { class: "white_sesame_dot", tag: "em" },
 		"丸傍点": { class: "black_circle", tag: "em" },
@@ -129,6 +129,8 @@ const AozoraText2Html = (text, cur_command = "title") => {
 		"横組み": { class: "yokogumi", block_tag: "div", tag: "span" },
 		"大きな文字": { class: "dai", block_tag: "div", tag: "span" },
 		"小さな文字": { class: "sho", block_tag: "div", tag: "span" },
+		"前書き": { class: "foreword", tag: "div" },
+		"後書き": { class: "afterword", tag: "div" },
 	}
 	text = text.replace(/(?:\r\n|\r|\n)/g, "\n")
 	// ルビと青空文庫コマンド対象にテキストと青空文庫コマンドを分割
@@ -203,6 +205,14 @@ const AozoraText2Html = (text, cur_command = "title") => {
 			const item = line_item[i]
 			if (item.type == "command") {
 				if (item.text.match(/［＃(.*)（(fig.+\.png)(、横([0-9]+)×縦([0-9]+))*）入る］/)) {
+					const alt = RegExp.$1
+					const src = RegExp.$2
+					addCommand(commands, frontText(line_item, i).length, "image", `src="${src}" class="illustration" alt="${item.row ? alt : escapeHtml(alt)}"`)
+				} else if(item.text.match(/［＃(.*)（(.+\.(?:png|jpeg|jpg))）入る］/)){
+					const alt = RegExp.$1
+					const src = RegExp.$2
+					addCommand(commands, frontText(line_item, i).length, "image", `src="${src}" class="illustration" alt="${item.row ? alt : escapeHtml(alt)}"`)
+				} else if(item.text.match(/［＃(.*)（(data:image\/.+)）入る］/)){
 					const alt = RegExp.$1
 					const src = RegExp.$2
 					addCommand(commands, frontText(line_item, i).length, "image", `src="${src}" class="illustration" alt="${item.row ? alt : escapeHtml(alt)}"`)
